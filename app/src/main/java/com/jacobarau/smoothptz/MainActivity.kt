@@ -4,15 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.edit
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    @Inject lateinit var hello: Hello
+
     fun play(url: String, player: SimpleExoPlayer) {
         val mediaItem: MediaItem = MediaItem.fromUri(url)
         player.setMediaItem(mediaItem)
@@ -23,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Log.i("Test", "DI says '" + hello.getHi())
+
         val tv: TextView = findViewById(R.id.tv)
         tv.text = HelloJNI().foo.toString()
 
