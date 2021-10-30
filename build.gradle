@@ -17,3 +17,8 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    dataStoreVersion = '1.0.0'
+    protobufVersion = '3.18.0'
+}

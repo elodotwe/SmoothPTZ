@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "com.jacobarau.smoothptz.settings";
+option java_multiple_files = true;
+
+message Settings {
+  string hello = 1;
+  //repeated Camera cameras = 1;
+}
+//
+//message Camera {
+//  string name = 1;
+//  string streamURL = 2;
+//}

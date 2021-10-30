@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id "com.google.protobuf" version "0.8.17"
 }
 
 android {
@@ -52,8 +53,35 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
     implementation 'org.videolan.android:libvlc-all:3.4.1'
     implementation "com.google.dagger:hilt-android:2.39.1"
+    implementation "androidx.datastore:datastore:$dataStoreVersion"
+    implementation  "com.google.protobuf:protobuf-javalite:$protobufVersion"
+
     annotationProcessor 'com.google.dagger:hilt-compiler:2.39.1'
     kapt "com.google.dagger:hilt-compiler:2.39.1"
 
     testImplementation 'junit:junit:4.13.2'
+}
+
+// We use DataStore to store our settings, which uses a protobuf file to define how to serialize
+// said settings. This protobuf block makes the build process automatically compile that protofile
+// so we can use its generated classes.
+
+// See app/src/main/proto.
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.14.0"
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
 }
