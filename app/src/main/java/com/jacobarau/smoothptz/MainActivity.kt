@@ -8,15 +8,26 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.edit
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.jacobarau.smoothptz.settings.Camera
+import com.jacobarau.smoothptz.settings.CameraRepository
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject lateinit var hello: Hello
+    @Inject lateinit var cameraRepository: CameraRepository
+
+    lateinit var cameras: LiveData<List<Camera>>
 
     fun play(url: String, player: SimpleExoPlayer) {
         val mediaItem: MediaItem = MediaItem.fromUri(url)
@@ -27,9 +38,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        cameras = cameraRepository.cameras.asLiveData()
+        cameras.observe(this, Observer { Log.i("foo", "new camera list gotten, $it") })
 
-        Log.i("Test", "DI says '" + hello.getHi())
+        lifecycleScope.launch {
+            cameraRepository.addCamera(Camera("foo", "bar"))
+        }
+
+        setContentView(R.layout.activity_main)
 
         val tv: TextView = findViewById(R.id.tv)
         tv.text = HelloJNI().foo.toString()
