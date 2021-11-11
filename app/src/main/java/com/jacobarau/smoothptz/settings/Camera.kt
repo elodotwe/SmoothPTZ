@@ -1,3 +1,3 @@
 package com.jacobarau.smoothptz.settings
 
-data class Camera(val name: String, val streamURL: String)
+data class Camera(var name: String, var streamURL: String)

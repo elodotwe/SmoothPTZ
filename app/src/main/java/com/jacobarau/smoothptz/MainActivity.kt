@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -25,9 +26,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject lateinit var cameraRepository: CameraRepository
-
-    lateinit var cameras: LiveData<List<Camera>>
+    private val mainViewModel: MainViewModel by viewModels()
 
     fun play(url: String, player: SimpleExoPlayer) {
         val mediaItem: MediaItem = MediaItem.fromUri(url)
@@ -38,13 +37,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        cameras = cameraRepository.cameras.asLiveData()
-        cameras.observe(this, Observer { Log.i("foo", "new camera list gotten, $it") })
 
-        lifecycleScope.launch {
-            cameraRepository.addCamera(Camera("foo", "bar"))
-        }
+        mainViewModel.cameras.observe(this, Observer { Log.i("foo", "new camera list gotten, $it") })
 
+//        cameras = cameraRepository.cameras.asLiveData()
+//        cameras.observe(this, Observer { Log.i("foo", "new camera list gotten, $it") })
+//
+//        lifecycleScope.launch {
+//            cameraRepository.addCamera(Camera("foo", "bar"))
+//        }
+//        mainViewModel.addCamera(camera = Camera("foo", "bar"))
+
+//        mainViewModel.deleteCamera(0)
         setContentView(R.layout.activity_main)
 
         val tv: TextView = findViewById(R.id.tv)
