@@ -1,6 +1,5 @@
 package com.jacobarau.smoothptz
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,9 +12,6 @@ import com.jacobarau.smoothptz.databinding.ActivityMainBinding
 import com.jacobarau.smoothptz.databinding.ActivityMainSingleCameraViewBinding
 import com.jacobarau.smoothptz.settings.Camera
 import dagger.hilt.android.AndroidEntryPoint
-import org.videolan.libvlc.LibVLC
-import org.videolan.libvlc.Media
-import org.videolan.libvlc.MediaPlayer
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -55,17 +51,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun makeCameraView(camera: Camera): View {
         val cameraViewBinding = ActivityMainSingleCameraViewBinding.inflate(layoutInflater)
-  
         cameraViewBinding.root.layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1F)
-
-        val libVLC = LibVLC(this, mutableListOf("-vvv"))
-        val mediaPlayer = MediaPlayer(libVLC)
-        mediaPlayer.attachViews(cameraViewBinding.videoLayout, null, false, false)
-        val media = Media(libVLC, Uri.parse(camera.streamURL))
-
-        mediaPlayer.media = media
-        media.release()
-        mediaPlayer.play()
+        cameraViewBinding.videoStreamView.play(camera.streamURL)
         return cameraViewBinding.root
     }
 }
