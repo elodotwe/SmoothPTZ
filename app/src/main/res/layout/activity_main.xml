@@ -6,71 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+    <include
+        android:id="@+id/no_camera_added"
+        layout="@layout/activity_main_no_cameras_added" />
 
-    <com.jacobarau.smoothptz.PanTiltArrow
+    <LinearLayout
+        android:id="@+id/cameras_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:exampleString="hello world"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:exampleColor="@color/white"
-        android:visibility="gone"
-        />
-
-    <com.google.android.exoplayer2.ui.StyledPlayerView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/player2Button"
-        app:layout_constraintLeft_toRightOf="@id/player1"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/player2"/>
-
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="URL"
-        app:layout_constraintTop_toBottomOf="@id/player2"
-        app:layout_constraintLeft_toRightOf="@id/player1Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/player2Button"
-        android:layout_marginHorizontal="20dp"
-        android:inputType="textUri"
-        />
-
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="URL"
-        app:layout_constraintTop_toBottomOf="@id/player1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/player2Button"
-        android:id="@+id/player1Button"
-        android:layout_marginHorizontal="20dp"
-        android:inputType="textUri"
-        />
-
-    <com.google.android.exoplayer2.ui.StyledPlayerView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/player1Button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/player2"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/player1"/>
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
