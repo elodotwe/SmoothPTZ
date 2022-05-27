@@ -35,18 +35,20 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.cameras.observe(this, Observer { Log.i("foo", "new camera list gotten, $it") })
 
         mainViewModel.cameras
-            .observe(this, {
-                binding.noCameraAdded.root.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
-                binding.camerasLinearLayout.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
-            })
+            .observe(this) {
+                binding.noCameraAdded.root.visibility =
+                    if (it.isEmpty()) View.VISIBLE else View.GONE
+                binding.camerasLinearLayout.visibility =
+                    if (it.isEmpty()) View.GONE else View.VISIBLE
+            }
 
         mainViewModel.cameras
-            .observe(this, { cameras ->
+            .observe(this) { cameras ->
                 binding.camerasLinearLayout.removeAllViews()
                 cameras.forEach { camera ->
                     binding.camerasLinearLayout.addView(makeCameraView(camera))
                 }
-            })
+            }
     }
 
     private fun makeCameraView(camera: Camera): View {
