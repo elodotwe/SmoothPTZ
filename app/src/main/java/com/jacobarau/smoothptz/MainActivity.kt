@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        mainViewModel.cameras.observe(this, Observer { Log.i("foo", "new camera list gotten, $it") })
+        mainViewModel.cameras.observe(this) { Log.i("foo", "new camera list gotten, $it") }
 
         mainViewModel.cameras
             .observe(this) {
