@@ -1,3 +1,5 @@
 package com.jacobarau.smoothptz.settings
 
-data class Camera(var name: String, var streamURL: String)
+import java.util.*
+
+data class Camera(var name: String, var streamURL: String, var uuid: String = UUID.randomUUID().toString())

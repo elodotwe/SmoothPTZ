@@ -12,4 +12,6 @@ message Camera {
   string name = 1;
   // URL to video feed from camera.
   string streamURL = 2;
+  // Camera UUID, unique among cameras saved on this device.
+  string uuid = 3;
 }
