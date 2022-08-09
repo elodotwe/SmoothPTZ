@@ -1,4 +1,4 @@
-package com.jacobarau.smoothptz
+package com.jacobarau.smoothptz.fragments.main
 
 import android.content.Context
 import android.net.Uri
