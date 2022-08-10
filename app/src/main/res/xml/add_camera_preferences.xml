@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_title">
 
     <PreferenceCategory android:title="@string/settings_cameras_title">
@@ -7,5 +8,22 @@
             android:icon="@drawable/ic_add_camera"
             android:key="add_camera"
             android:title="@string/settings_cameras_add_camera_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/settings_general_title">
+        <Preference
+            android:icon="@drawable/ic_save"
+            android:key="create_backup"
+            android:title="@string/settings_general_create_backup"
+            app:summary="@string/settings_general_create_backup_summary" />
+        <Preference
+            android:icon="@drawable/ic_restore"
+            android:key="restore_backup"
+            android:title="@string/settings_general_restore_backup"
+            app:summary="@string/settings_general_restore_backup_summary" />
+        <Preference
+            android:icon="@drawable/ic_info"
+            android:key="about"
+            android:title="@string/settings_general_about"
+            app:summary="@string/settings_general_about_summary" />
     </PreferenceCategory>
 </PreferenceScreen>

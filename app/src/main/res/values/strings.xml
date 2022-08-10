@@ -5,4 +5,11 @@
     <string name="settings_title">Settings</string>
     <string name="settings_cameras_title">Cameras</string>
     <string name="settings_cameras_add_camera_title">Add a new camera</string>
+    <string name="settings_general_title">General</string>
+    <string name="settings_general_create_backup">Create backup</string>
+    <string name="settings_general_restore_backup">Restore backup</string>
+    <string name="settings_general_create_backup_summary">Share cameras and presets with another SmoothPTZ installation</string>
+    <string name="settings_general_restore_backup_summary">Load cameras and presets from a previously-created backup</string>
+    <string name="settings_general_about">About SmoothPTZ</string>
+    <string name="settings_general_about_summary">See app version</string>
 </resources>
