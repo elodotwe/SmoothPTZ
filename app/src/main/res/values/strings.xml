@@ -2,4 +2,7 @@
     <string name="app_name">SmoothPTZ</string>
     <string name="camera_icon_content_description">Camera icon</string>
     <string name="add_a_camera_to_get_started">Add a camera to get started!</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_cameras_title">Cameras</string>
+    <string name="settings_cameras_add_camera_title">Add a new camera</string>
 </resources>

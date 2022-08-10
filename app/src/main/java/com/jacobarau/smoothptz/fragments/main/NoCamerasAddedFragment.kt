@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.jacobarau.smoothptz.R
 
 class NoCamerasAddedFragment: Fragment(R.layout.no_cameras_added_fragment) {
@@ -11,6 +12,7 @@ class NoCamerasAddedFragment: Fragment(R.layout.no_cameras_added_fragment) {
         super.onViewCreated(view, savedInstanceState)
         view.setOnClickListener {
             Log.i("foo", "clicked")
+            findNavController().navigate(R.id.action_global_settingsFragment)
         }
     }
 }

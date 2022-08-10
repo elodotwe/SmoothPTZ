@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title">
+
+    <PreferenceCategory android:title="@string/settings_cameras_title">
+        <Preference
+            android:icon="@drawable/ic_add_camera"
+            android:key="add_camera"
+            android:title="@string/settings_cameras_add_camera_title" />
+    </PreferenceCategory>
+</PreferenceScreen>
