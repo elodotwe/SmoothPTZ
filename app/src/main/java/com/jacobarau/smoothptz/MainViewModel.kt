@@ -14,10 +14,9 @@ class MainViewModel @Inject constructor(private val cameraRepository: CameraRepo
         cameraRepository.cameras.asLiveData(viewModelScope.coroutineContext)
     }
 
-    //TODO
-//    fun addCamera(index: Int = -1, camera: Camera) {
-//        viewModelScope.launch {
-//            cameraRepository.addCamera(index, camera)
-//        }
-//    }
+    fun addCamera(camera: Camera) {
+        viewModelScope.launch {
+            cameraRepository.save(camera)
+        }
+    }
 }
