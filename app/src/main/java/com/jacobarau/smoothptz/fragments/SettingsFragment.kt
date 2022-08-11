@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.preference.*
 import androidx.preference.Preference.DEFAULT_ORDER
 import com.jacobarau.smoothptz.MainViewModel
@@ -26,9 +27,10 @@ class SettingsFragment: PreferenceFragmentCompat() {
         // Per settings_root.xml, our first preference is the "Cameras" PreferenceCategory.
         // This contains the list of cameras, with an "add camera" button at the bottom.
         val camerasGroup = preferenceScreen.getPreference(0) as PreferenceCategory
-        // Again per settings_root.xml, the first child of this "Cameras" PreferenceCategory is
-        // the "Add new camera" Preference. We add the list of cameras before this Preference.
-        val addButton = camerasGroup[0]
+        // Grab the "add" button off the bottom of this group. settings_root.xml only has the
+        // "add" button in this group--but we may be recreated from a previous state,
+        // meaning cameras may be added to this group from a previous run.
+        val addButton = camerasGroup[camerasGroup.size - 1]
         model.cameras.observe(viewLifecycleOwner) { cameras ->
             // As it doesn't appear there's an "insert" method to manipulate the PreferenceCategory,
             // we remove all its children and re-add them on every update.
@@ -58,9 +60,7 @@ class SettingsFragment: PreferenceFragmentCompat() {
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         if (preference.key == "add_camera") {
-            // TODO: go to add camera frag
-            val camera = Camera("foo", "1.2.3.4")
-            model.addCamera(camera)
+            findNavController().navigate(R.id.action_global_addEditCameraFragment)
             return true
         }
         return super.onPreferenceTreeClick(preference)

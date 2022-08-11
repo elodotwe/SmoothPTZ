@@ -12,4 +12,8 @@
     <string name="settings_general_restore_backup_summary">Load cameras and presets from a previously-created backup</string>
     <string name="settings_general_about">About SmoothPTZ</string>
     <string name="settings_general_about_summary">See app version</string>
+    <string name="settings_camera_network_address">Network address</string>
+    <string name="settings_camera_network_address_unset">Tap to set</string>
+    <string name="settings_camera_name">Name</string>
+    <string name="settings_camera_name_unset">Tap to set (optional)</string>
 </resources>

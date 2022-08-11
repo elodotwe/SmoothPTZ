@@ -15,4 +15,8 @@
         android:name="com.jacobarau.smoothptz.fragments.SettingsFragment"
         android:label="@string/settings_title" />
     <action android:id="@+id/action_global_settingsFragment" app:destination="@id/settingsFragment"/>
+    <fragment
+        android:id="@+id/addEditCameraFragment"
+        android:name="com.jacobarau.smoothptz.fragments.AddEditCameraFragment"
+        android:label="AddEditCameraFragment" /><action android:id="@+id/action_global_addEditCameraFragment" app:destination="@id/addEditCameraFragment"/>
 </navigation>
